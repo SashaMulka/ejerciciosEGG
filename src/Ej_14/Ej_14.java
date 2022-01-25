@@ -16,8 +16,10 @@ del programa directamente, se debe mostrar el siguiente mensaje de confirmación
 carácter ‘S’ se sale del programa, caso contrario se vuelve a mostrar el menú
 */
 
+
 package Ej_14;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -25,13 +27,14 @@ public class Ej_14 {
 
   
     public static void main(String[] args) {
-    Scanner leer = new Scanner(System.in);
+    Scanner leer = new Scanner(System.in, "ISO-8859-1").useDelimiter("\n").useLocale(Locale.US);
 
         System.out.println("Ingrese un numero entero positivo");
         int num1 = leer.nextInt();
         System.out.println("Ingrese otro");
         int num2 = leer.nextInt();
         boolean salir = false;
+        String rtta;
         
         do{
         System.out.println("-----Menu-----");
@@ -61,25 +64,20 @@ public class Ej_14 {
                 break;
             case 5:
                 
-                String rtta;
                 do {
                 System.out.println("Esta seguro que desea salir del programa? S/N");
-                rtta = leer.nextLine(); //como leer un caracter??
-                
-                switch (rtta) {
-                    case "S":
-                        salir = true;
-                        break;
-                    case "N":
-                        break;
-                    default:
+                rtta = leer.next(); //como leer un caracter??
+
+                if ("S".equals(rtta)) {
+                    salir = true;
+                } else if (!("N".equals(rtta))) {
                         System.out.println("Respuesta no valida");
                 }
-                }while( !(rtta == "N") || !(rtta == "S") ); 
+                }while( !("N".equals(rtta)) && !("S".equals(rtta)) ); 
                 
         }   
         }while(!salir);
-        5
+       
     }
 
 }
